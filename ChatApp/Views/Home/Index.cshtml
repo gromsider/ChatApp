@@ -1,0 +1,26 @@
+﻿@model ChatApp.Models.DialogFormContainer
+@{
+    ViewData["Title"] = "Список пользователей";
+}
+<h1>Вы вошли под @Model.ownerName</h1>
+<h3>Пользаватели</h3>
+<table class="table-condensed">
+    @if (Model.Users == null || Model.Users.Count() == 0)
+    {
+        <tr>
+            <td>Список пользователей пуст.</td>
+        </tr>
+    }
+    else
+    {
+        @foreach (var user in Model.Users.Where(u => u != Model.ownerName))
+        {
+            <tr>
+                <td><a href="~/Home/Dialog?partnerName=@user">@user</a></td>
+            </tr>
+        }
+    }
+</table>
+<a href="~/Account/Logout">
+    <input type="button" value="Выйти" class="btn btn-outline-dark" />
+</a>

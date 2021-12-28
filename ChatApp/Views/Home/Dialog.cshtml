@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ChatApp.Models.DialogFormContainer
+@{
+    ViewData["Title"] = "Диалог";
+}
+
+<h3>ownerName = @Model.ownerName; partnerName = @Model.partnerName</h3>
+
+<div class="col-xl-6">
+    @if (!string.IsNullOrEmpty(Model.partnerName))
+    {
+        <p>Чат с @Model.partnerName</p>
+        <div>
+            <div class="sub-menu" id="scrl">
+                @foreach (var message in (Model.Story ?? new List<Message>()))
+                {
+
+                    <p>@message.From написал в @message.TimeStamp.ToShortTimeString() (@message.TimeStamp.ToShortDateString()):</p>
+                    <p>
+                        @message.MessageText
+                    </p>
+                    <br>
+                }
+            </div>
+        </div>
+        <form method="post">
+            <p><input type="text" placeholder="Введите сообщение" name="Message"></p>
+            <input name="ownerName" type="hidden" value="@Model.ownerName">
+            <input name="partnerName" type="hidden" value="@Model.partnerName">
+            <p><input type="submit" value="Отправить"></p>
+        </form>
+        <a href="/Home/Main?partnerName=@Model.partnerName"><input type="button" value="Обновить"></a>
+    }
+</div>
+
+<script type="text/javascript">
+    window.onload = function()
+    {
+        setTimeout(() => {
+            var el = document.getElementById("scrl");
+            el.scrollTop = el.scrollHeight;
+        }, 100);
+}
+</script>
