@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using ChatApp.ViewModels; // пространство имен моделей RegisterModel и LoginModel
-using ChatApp.Models; // пространство имен UserContext и класса User
+using ChatApp.ViewModels;
+using ChatApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 namespace ChatApp.Controllers

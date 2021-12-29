@@ -28,8 +28,6 @@ namespace ChatApp.Controllers
                 ownerName = User.Identity.Name,
                 Users = users
             });
-
-            //return View(db.Users.ToList());
         }
 
         public IActionResult Dialog(string partnerName)
@@ -56,12 +54,6 @@ namespace ChatApp.Controllers
                 Users = users,
                 Story = story
             });
-
-            //return View(new DialogFormContainer
-            //{
-            //    ownerName = User.Identity.Name,
-            //    partnerName = partnerName
-            //});
         }
 
         [HttpPost]
@@ -83,10 +75,6 @@ namespace ChatApp.Controllers
                 AddMessageToDialogue(message, ownerName, partnerName, partnerName, ownerName);
 
                 int succesfulRecords = db.SaveChanges();
-                if (succesfulRecords == 0)
-                {
-                    //Debug.Log
-                }
             }
 
 
